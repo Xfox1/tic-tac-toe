@@ -52,25 +52,25 @@ io.on("connection", function(socket) {
     }
 
 
-// Event for when any player makes a move
-socket.on("make.move", function(data) {
-    if (!opponentOf(socket)) {
-        // This shouldn't be possible since if a player doens't have an opponent the game board is disabled
-        return;
-    }
+    // Event for when any player makes a move
+    socket.on("make.move", function(data) {
+        if (!opponentOf(socket)) {
+            // This shouldn't be possible since if a player doens't have an opponent the game board is disabled
+            return;
+        }
 
-    // Validation of the moves can be done here
+        // Validation of the moves can be done here
 
-    socket.emit("move.made", data); // Emit for the player who made the move
-    opponentOf(socket).emit("move.made", data); // Emit for the opponent
-  });
+        socket.emit("move.made", data); // Emit for the player who made the move
+        opponentOf(socket).emit("move.made", data); // Emit for the opponent
+    });
 
-  // Event to inform player that the opponent left
-  socket.on("disconnect", function() {
-    if (opponentOf(socket)) {
-      opponentOf(socket).emit("opponent.left");
-    }
-  });
+    // Event to inform player that the opponent left
+    socket.on("disconnect", function() {
+        if (opponentOf(socket)) {
+        opponentOf(socket).emit("opponent.left");
+        }
+    });
 });
 
 
