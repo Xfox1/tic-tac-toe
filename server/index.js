@@ -76,7 +76,7 @@ socket.on("make.move", function(data) {
 
 function join(socket) {
     players[socket.id] = {
-        opponent: unmatched, //
+        opponent: unmatched,
         symbol: "X",
         socket: socket
     };
