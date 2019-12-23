@@ -28,11 +28,6 @@ io.on("connection", function(socket) {
     console.log("New client connected. ID: ", socket.id);
     clients[socket.id] = socket;
 
-    socket.on("mousemove", data => {// Bind event for that socket (player)
-        data.id = id;
-        socket.broadcast.emit("moving", data);// Sending to all clients except sender
-    });
-
     socket.on("disconnect", () => {// Bind event for that socket (player)
         console.log("Client disconnected. ID: ", socket.id);
         delete clients[socket.id];
